@@ -1,0 +1,25 @@
+<div class="container" style="padding: 20px; max-width: 800px; margin: 0 auto">
+  <div
+    style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px"
+  >
+    <button type="button" (click)="addSection()" class="app-cmp-button app-cl-filled">
+      <i class="material-symbols-outlined">library_books</i>
+      Add Section
+    </button>
+    <span class="app-cl-number" style="font-size: 1.1em">({{ sections().length }})</span>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #ccc; margin-bottom: 20px" />
+
+  <div class="section-wrapper">
+    @for (sec of sections(); track sec.id; let i = $index) {
+      <app-dynamic-section
+        [numbers]="sec.data"
+        [canDelete]="sections().length > 1"
+        [sectionIndex]="i + 1"
+        (numbersChange)="updateSection(i, $event)"
+        (remove)="removeSection(i)"
+      ></app-dynamic-section>
+    }
+  </div>
+</div>

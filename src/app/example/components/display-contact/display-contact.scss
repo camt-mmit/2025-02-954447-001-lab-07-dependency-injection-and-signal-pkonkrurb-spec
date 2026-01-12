@@ -1,0 +1,74 @@
+@use '../../scss/common';
+@use '../../scss/dymanic-component';
+@use '../../scss/dynamic-list';
+
+:host {
+  @layer {
+    & {
+      --prop-header-height: 56px;
+      --prop-column-gap: var(--cmp-column-gap);
+
+      --prop-stick-top: var(--app-stick-top, 0px);
+      --prop-stick-z-index: calc(var(--app-stick-z-index, 9999) - 1);
+    }
+  }
+
+  @include common.layout-block();
+}
+
+header {
+  @include common.layout-block();
+
+  position: sticky;
+  top: var(--prop-stick-top);
+  z-index: var(--prop-stick-z-index);
+
+  height: var(--prop-header-height);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  & > * {
+    @include common.layout-block();
+
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    column-gap: var(--prop-column-gap);
+
+    & > * {
+      @include common.layout-block();
+
+      flex: 1 0 auto;
+
+      display: inline-flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: center;
+    }
+
+    & > .-cl-float-right {
+      flex: 0 0 auto;
+      width: 0px;
+
+      justify-content: end;
+    }
+
+    .-cl-title {
+      @include common.layout-block();
+    }
+
+    .-cmp-contacts-summary {
+      display: inline-block;
+      width: 7ch;
+
+      font-weight: bold;
+    }
+  }
+}
+
+ul.-cmp-list {
+  --app-stick-top: calc(var(--prop-stick-top) + var(--prop-header-height));
+  --app-stick-z-index: var(--prop-stick-z-index);
+}

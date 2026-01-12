@@ -1,0 +1,93 @@
+@use '../../../../scss/common';
+
+:host {
+  display: block;
+  margin-bottom: 20px;
+  // ไม่ต้องมี border หรือ padding รอบนอกตามรูปตัวอย่างล่าสุด (ดูเหมือนเป็นเส้นขีดมากกว่า)
+  // แต่ถ้าอยากได้กรอบขาวๆ เหมือนเดิมให้คงบรรทัดข้างล่างไว้
+  // background-color: white; 
+}
+
+// จัด Layout ส่วนหัว
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // ดันซ้ายและขวาออกจากกัน
+  padding-bottom: 10px;
+
+  .section-title {
+    font-weight: bold;
+    font-size: 1.1em;
+    flex: 1;             // กินพื้นที่ตรงกลางทั้งหมด
+    text-align: center;  // จัดตัวหนังสือให้อยู่ตรงกลางเป๊ะๆ
+  }
+
+  .section-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;           // ระยะห่างระหว่าง (N) กับปุ่มลบ
+    
+    .input-count {
+      color: #666;
+    }
+  }
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 0 0 15px 0;
+}
+
+ul.-cmp-list {
+  padding: 0;
+  list-style: none;
+  margin-bottom: 10px;
+
+  li {
+    margin-bottom: 8px;
+  }
+}
+
+// จัด Layout แถว Input (Number X [Input] [Delete])
+.input-row {
+  display: flex;
+  align-items: center;
+  
+  .label-text {
+    width: 80px;      // ความกว้างคำว่า Number
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+  }
+
+  .label-index {
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .input-wrapper {
+    flex: 1;          // ให้ Input ยืดเต็มที่เหลือ
+  }
+}
+
+// จัด Layout แถว Result
+.result-row {
+  display: flex;
+  align-items: baseline; // จัดให้ฐานตัวหนังสือเท่ากัน
+  margin-top: 10px;
+
+  .label-text {
+    width: 80px;      // ความกว้างคำว่า Result (ให้ตรงกับ Number)
+    font-weight: bold;
+    text-align: right;
+    padding-right: 40px; // ดันออกไปให้ตรงกับแนว input
+  }
+
+  .result-value {
+    font-weight: bold;
+    border-bottom: 1px solid black; // ขีดเส้นใต้ค่า
+    padding: 0 2px;
+  }
+}

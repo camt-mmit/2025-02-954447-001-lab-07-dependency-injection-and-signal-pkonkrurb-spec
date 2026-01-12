@@ -1,0 +1,49 @@
+<div class="section-header">
+  <button type="button" (click)="addInput()" class="app-cmp-button app-cl-filled">
+    <i class="material-symbols-outlined">add</i>
+    Input
+  </button>
+
+  <div class="section-title">
+    Section <span style="margin-left: 10px;">{{ sectionIndex() }}</span>
+  </div>
+  
+  <div class="section-right">
+    <span class="input-count">({{ numbers().length }})</span>
+    
+    <button 
+      type="button" 
+      [disabled]="!canDelete()"
+      (click)="remove.emit()" 
+      class="app-cmp-button app-cl-warn app-cl-filled">
+      <i class="material-symbols-outlined">delete_forever</i>
+    </button>
+  </div>
+</div>
+
+<hr class="divider">
+
+<ul class="-cmp-list">
+  @for (num of numbers(); track $index) {
+    <li>
+      <div class="input-row">
+        <b class="label-text">Number</b>
+        <span class="label-index">{{ $index + 1 }}</span>
+        
+        <div class="input-wrapper">
+          <app-dynamic-input 
+            [value]="num" 
+            [canDelete]="numbers().length > 1"
+            (valueChange)="updateNumber($index, $event)"
+            (remove)="removeInput($index)"
+          ></app-dynamic-input>
+        </div>
+      </div>
+    </li>
+  }
+</ul>
+
+<div class="result-row">
+  <div class="label-text">Result</div>
+  <div class="result-value">{{ result() }}</div>
+</div>

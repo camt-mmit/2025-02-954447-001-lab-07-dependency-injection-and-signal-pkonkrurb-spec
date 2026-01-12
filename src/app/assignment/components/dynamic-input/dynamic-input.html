@@ -1,0 +1,10 @@
+<input 
+  type="number" 
+  [ngModel]="value()" 
+  (ngModelChange)="value.set($event)" 
+  placeholder="0"
+/>
+
+<button type="button" (click)="remove.emit()" title="Delete">
+  <i class="material-symbols-outlined">delete</i>
+  </button>
